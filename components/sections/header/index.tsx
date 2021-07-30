@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as Styled from "./styles";
 import { useMoralis } from "react-moralis";
-import { ConnectButton, Button, GotchiSVG } from "components/ui";
+import { Button, GotchiSVG, Modal } from "components/ui";
+import { GotchiSelectModal, ConnectButton  } from "..";
 import { useAavegotchi, updateAavegotchis } from "context/AavegotchiContext";
 import { Aavegotchi } from "types";
 
@@ -32,9 +33,9 @@ const BuyButton = () => {
   );
 };
 
-const GotchiSelectButton = ({ gotchi }: { gotchi: Aavegotchi }) => {
+const GotchiSelectButton = ({ gotchi, onClick }: { gotchi: Aavegotchi, onClick: () => void }) => {
   return (
-    <Button>
+    <Button onClick={onClick}>
       <Styled.ButtonContents>
         <Styled.GotchiIconWrapper>
           <GotchiSVG tokenId={gotchi.id} />
@@ -55,6 +56,8 @@ export const Header = () => {
     dispatch,
   } = useAavegotchi();
 
+  const [isGotchiSelectModalOpen, setIsGotchiSelectModalOpen] = useState(false);
+
   useEffect(() => {
     if (isAuthenticated && isWeb3Enabled) {
       updateAavegotchis(dispatch, user.attributes.accounts[0]);
@@ -63,6 +66,7 @@ export const Header = () => {
 
   return (
     <Styled.Wrapper>
+      {isGotchiSelectModalOpen && <GotchiSelectModal onHandleClose={() => setIsGotchiSelectModalOpen(false)} />}
       <Styled.ButtonContainer>
         {isAuthenticated &&
           networkId === 137 &&
@@ -72,6 +76,7 @@ export const Header = () => {
             <BuyButton />
           ) : (
             <GotchiSelectButton
+              onClick={() => setIsGotchiSelectModalOpen(true)}
               gotchi={usersAavegotchis[selectedAavegotchiIndex]}
             />
           ))}

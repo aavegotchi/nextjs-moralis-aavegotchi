@@ -3,7 +3,7 @@ import * as Styled from "./styles";
 import { useMoralis } from 'react-moralis';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { smartTrim, networkIdToName } from 'utils';
-import { Button } from '../button';
+import { Button } from 'components/ui/button';
 import { useAavegotchi } from "context/AavegotchiContext";
 import { useEffect } from 'react';
 

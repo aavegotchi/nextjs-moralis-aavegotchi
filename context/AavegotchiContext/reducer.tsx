@@ -29,7 +29,7 @@ export type Action =
       svg: string;
     };
 
-export const reducer = (state: State, action: Action) => {
+export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_USERS_AAVEGOTCHIS": {
       return {
@@ -40,7 +40,7 @@ export const reducer = (state: State, action: Action) => {
     case "SET_SELECTED_AAVEGOTCHI": {
       return {
         ...state,
-        selectedAavegotchi: action.selectedAavegotchiIndex,
+        selectedAavegotchiIndex: action.selectedAavegotchiIndex,
       };
     }
     case "START_ASYNC": {

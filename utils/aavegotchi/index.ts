@@ -38,10 +38,10 @@ export const bounceAnimation = (svg: string) => {
   const style = `
     @keyframes downHands {
       from {
-        transform: translate(0px, -4px);
+        --hand_translateY: -4px;
       }
       to {
-        transform: translate(0px, -3px);
+        --hand_translateY: -3.5px;
       }
     }
     @keyframes up {
@@ -125,7 +125,7 @@ export const raiseHands = (svg: string) => {
       display:block !important;
     }
     .wearable-hand {
-      transform: translateY(-7px);
+      transform: translateY(14px + var(--hand_translateY, -4px));
     }
   `;
 
@@ -217,10 +217,10 @@ export const customiseSvg = (svg: string, options: CustomiseOptions) => {
           return styledSvg = replaceParts(styledSvg, {target: option, replaceSvg: value as keyof typeof eyes});
         case 'mouth':
           return styledSvg = replaceParts(styledSvg, {target: option, replaceSvg: value as keyof typeof mouths});
-        case 'animate':
-          return styledSvg = bounceAnimation(styledSvg);
         case 'armsUp':
           return styledSvg = raiseHands(styledSvg);
+        case 'animate':
+          return styledSvg = bounceAnimation(styledSvg);
         case 'removeShadow':
           return styledSvg = removeShadow(styledSvg);
         default:

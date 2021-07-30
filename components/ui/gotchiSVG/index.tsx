@@ -45,7 +45,7 @@ export const GotchiSVG = ({ tokenId, options }: Props) => {
         fetchGotchiSvg(tokenId, !!selectedGotchi);
       }
     }
-  }, [tokenId, usersAavegotchis, isWeb3Enabled])
+  }, [tokenId, usersAavegotchis, isWeb3Enabled, options])
 
   return (
     <img src={svg ? convertInlineSVGToBlobURL(svg) : "/assets/gifs/loading.gif"} />

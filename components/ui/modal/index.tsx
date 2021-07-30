@@ -1,4 +1,6 @@
 import * as Styled from './styles';
+import { useEffect, useState } from "react";
+import { Portal } from "components/util";
 
 interface Props {
   children: React.ReactNode;
@@ -7,11 +9,13 @@ interface Props {
 
 export const Modal = ({ children, onHandleClose }: Props) => {
   return (
-    <Styled.Wrapper>
-      <Styled.Modal>
-        {onHandleClose && <Styled.CloseIcon src="/assets/icons/close.svg" onClick={() => onHandleClose()} />}
-        {children}
-      </Styled.Modal>
-    </Styled.Wrapper>
+    <Portal>
+      <Styled.Wrapper>
+        <Styled.Modal>
+          {onHandleClose && <Styled.CloseIcon src="/assets/icons/close.svg" onClick={() => onHandleClose()} />}
+          {children}
+        </Styled.Modal>
+      </Styled.Wrapper>
+    </Portal>
   )
 }
