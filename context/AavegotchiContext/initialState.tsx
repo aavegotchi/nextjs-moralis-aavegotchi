@@ -2,7 +2,7 @@ import { Aavegotchi } from "types";
 
 export interface State {
   usersAavegotchis?: Array<Aavegotchi>;
-  selectedAavegotchi?: Aavegotchi;
+  selectedAavegotchiIndex: number;
   loading: boolean;
   error?: Error;
   networkId?: number;
@@ -10,4 +10,5 @@ export interface State {
 
 export const initialState: State = {
   loading: false,
+  selectedAavegotchiIndex: 0,
 }

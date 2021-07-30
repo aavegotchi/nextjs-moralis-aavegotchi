@@ -18,19 +18,35 @@ export const Wrapper = styled.header`
   };
 `
 
-export const GotchiIconWrapper = styled.div`
-  background-color: ${({theme}) => theme.colors.light1};
-  height: 2.8rem;
-  width: 2.8rem;
-  border-radius: 50%;
-  display: grid;
-  align-items: center;
-  overflow: hidden;
+export const ButtonContainer = styled.div`
+  display: flex;
+  & > * + * {
+    margin-left: 0.6rem;
+  }
 `
 
-export const GotchiIcon = styled.img`
-  height: 100%;
+export const ButtonContents = styled.div`
   width: 100%;
+  height: 100%;
+  display: flex;
+  padding-left: 0.4rem;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const GotchiIconWrapper = styled.div`
+  background-color: ${({theme}) => theme.colors.light1};
+  height: 3.2rem;
+  width: 3.2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  img {
+    height: 110%;
+    width: 110%;
+  }
 `
 
 export const AavegotchiDetails = styled.div`

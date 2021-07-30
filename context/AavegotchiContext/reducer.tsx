@@ -7,7 +7,7 @@ export type Action =
     }
   | {
       type: "SET_SELECTED_AAVEGOTCHI";
-      selectedAavegotchi: State["selectedAavegotchi"];
+      selectedAavegotchiIndex: State["selectedAavegotchiIndex"];
     }
   | {
       type: "START_ASYNC";
@@ -22,6 +22,11 @@ export type Action =
     }
   | {
       type: "END_ASYNC";
+    }
+  | {
+      type: "UPDATE_AAVEGOTCHI_SVG";
+      tokenId: string;
+      svg: string;
     };
 
 export const reducer = (state: State, action: Action) => {
@@ -35,7 +40,7 @@ export const reducer = (state: State, action: Action) => {
     case "SET_SELECTED_AAVEGOTCHI": {
       return {
         ...state,
-        selectedAavegotchi: action.selectedAavegotchi,
+        selectedAavegotchi: action.selectedAavegotchiIndex,
       };
     }
     case "START_ASYNC": {
@@ -63,7 +68,22 @@ export const reducer = (state: State, action: Action) => {
         networkId: action.networkId,
       };
     }
+    case "UPDATE_AAVEGOTCHI_SVG": {
+      if (!state.usersAavegotchis) throw "No Aavegotchis to update."
+      const copyGotchiState = [...state.usersAavegotchis];
+      const updatedGotchiIndex = copyGotchiState.findIndex(gotchi => gotchi.id === action.tokenId);
+
+      if (updatedGotchiIndex >= 0) {
+        copyGotchiState[updatedGotchiIndex].svg = action.svg;
+        return {
+          ...state,
+          usersAavegotchis: copyGotchiState
+        }
+      } else {
+        throw "Selected gotchi doesn't exist in state."
+      }
+    }
     default:
-      throw new Error("Bad action type");
+      throw "Bad action type";
   }
 };

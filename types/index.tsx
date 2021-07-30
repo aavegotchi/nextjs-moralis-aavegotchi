@@ -6,4 +6,5 @@ export interface Aavegotchi {
   id: string;
   name: string;
   withSetsNumericTraits: [number, number, number, number, number, number];
+  svg?: string;
 }

@@ -26,7 +26,7 @@ export const Layout = ({children}: Props) => {
     } else {
       enableWeb3();
     }
-  }, [isWeb3Enabled, web3])
+  }, [isWeb3Enabled])
 
   return (
     <>

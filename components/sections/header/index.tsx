@@ -1,69 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import * as Styled from "./styles";
-import { useMoralis } from 'react-moralis';
-import { ConnectButton, Button } from 'components/ui';
-import { useAavegotchi, updateAavegotchis } from 'context/AavegotchiContext';
-
+import { useMoralis } from "react-moralis";
+import { ConnectButton, Button, GotchiSVG } from "components/ui";
+import { useAavegotchi, updateAavegotchis } from "context/AavegotchiContext";
+import { Aavegotchi } from "types";
 
 const LoadingButton = () => {
   return (
-    <Button disabled={true}>  
-      <Styled.GotchiIconWrapper>
-        <Styled.GotchiIcon src="/assets/gifs/loading.gif" />
-      </Styled.GotchiIconWrapper>
-      <Styled.AavegotchiDetails>
+    <Button disabled={true}>
+      <Styled.ButtonContents>
+        <Styled.GotchiIconWrapper>
+          <img src="/assets/gifs/loading.gif" />
+        </Styled.GotchiIconWrapper>
+        <Styled.AavegotchiDetails>
           <p>Loading</p>
-          <p>
-            Aavegotchis
-          </p>
+          <p>Aavegotchis</p>
         </Styled.AavegotchiDetails>
+      </Styled.ButtonContents>
     </Button>
-  )
-}
+  );
+};
 
 const BuyButton = () => {
   return (
-    <a href="https://aavegotchi.com/baazaar/aavegotchis?sort=latest" target="_blank">
-      <Button>  
-        Buy Aavegotchi
-      </Button>
+    <a
+      href="https://aavegotchi.com/baazaar/aavegotchis?sort=latest"
+      target="_blank"
+    >
+      <Button>Buy Aavegotchi</Button>
     </a>
-  )
-}
+  );
+};
 
-const GotchiButton = () => {
+const GotchiSelectButton = ({ gotchi }: { gotchi: Aavegotchi }) => {
   return (
     <Button>
-
+      <Styled.ButtonContents>
+        <Styled.GotchiIconWrapper>
+          <GotchiSVG tokenId={gotchi.id} />
+        </Styled.GotchiIconWrapper>
+        <Styled.AavegotchiDetails>
+          <p>{gotchi.id}</p>
+          <p>{gotchi.name}</p>
+        </Styled.AavegotchiDetails>
+      </Styled.ButtonContents>
     </Button>
-  )
-}
+  );
+};
 
 export const Header = () => {
-  const {isAuthenticated, user } = useMoralis();
-  const { state: {usersAavegotchis, networkId, selectedAavegotchi }, dispatch } = useAavegotchi();
+  const { isAuthenticated, user, isWeb3Enabled } = useMoralis();
+  const {
+    state: { usersAavegotchis, networkId, selectedAavegotchiIndex },
+    dispatch,
+  } = useAavegotchi();
 
   useEffect(() => {
-    if (usersAavegotchis && usersAavegotchis.length !== 0 && !selectedAavegotchi) {
-      dispatch({
-        type: "SET_SELECTED_AAVEGOTCHI",
-        selectedAavegotchi: usersAavegotchis[0]
-      })
-    }
-  }, [usersAavegotchis])
-
-  useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && isWeb3Enabled) {
       updateAavegotchis(dispatch, user.attributes.accounts[0]);
     }
-  }, [isAuthenticated, networkId, usersAavegotchis]);
+  }, [isWeb3Enabled, isAuthenticated]);
 
   return (
     <Styled.Wrapper>
-      { isAuthenticated && networkId === 137 && (
-        usersAavegotchis === undefined ? <LoadingButton /> : usersAavegotchis.length === 0 ? <BuyButton /> : <BuyButton />
-      )}
-      <ConnectButton />
+      <Styled.ButtonContainer>
+        {isAuthenticated &&
+          networkId === 137 &&
+          (usersAavegotchis === undefined ? (
+            <LoadingButton />
+          ) : usersAavegotchis.length === 0 ? (
+            <BuyButton />
+          ) : (
+            <GotchiSelectButton
+              gotchi={usersAavegotchis[selectedAavegotchiIndex]}
+            />
+          ))}
+        <ConnectButton />
+      </Styled.ButtonContainer>
     </Styled.Wrapper>
-  )
-}
+  );
+};
