@@ -34,7 +34,7 @@ export const theme = {
 
   font: {
     primary: "helvetica, sans-serif",
-    secondary: "garamond, serif",
+    secondary: "helvetica, sane-serif",
     xl: {
       size: '6rem',
       lineHeight: '4rem',

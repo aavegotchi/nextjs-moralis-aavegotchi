@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle<{ theme: typeof theme }>`
   }
   a:hover {
     color: ${theme.colors.primary};
-    text-decoration: underline;
   }
 
   h1 {

@@ -2,6 +2,14 @@ import { State } from "./initialState";
 
 export type Action =
   | {
+      type: "SET_USERS_AAVEGOTCHIS";
+      usersAavegotchis: State["usersAavegotchis"];
+    }
+  | {
+      type: "SET_SELECTED_AAVEGOTCHI";
+      selectedAavegotchi: State["selectedAavegotchi"];
+    }
+  | {
       type: "START_ASYNC";
     }
   | {
@@ -18,6 +26,18 @@ export type Action =
 
 export const reducer = (state: State, action: Action) => {
   switch (action.type) {
+    case "SET_USERS_AAVEGOTCHIS": {
+      return {
+        ...state,
+        usersAavegotchis: action.usersAavegotchis,
+      };
+    }
+    case "SET_SELECTED_AAVEGOTCHI": {
+      return {
+        ...state,
+        selectedAavegotchi: action.selectedAavegotchi,
+      };
+    }
     case "START_ASYNC": {
       return {
         ...state,

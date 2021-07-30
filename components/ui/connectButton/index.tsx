@@ -3,11 +3,12 @@ import * as Styled from "./styles";
 import { useMoralis } from 'react-moralis';
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { smartTrim, networkIdToName } from 'utils';
-import { useWeb3 } from "context/Web3Context";
+import { Button } from '../button';
+import { useAavegotchi } from "context/AavegotchiContext";
 import { useEffect } from 'react';
 
 export const ConnectButton = () => {
-  const { state: { networkId, loading } } = useWeb3();
+  const { state: { networkId, loading } } = useAavegotchi();
   const { authenticate, user, logout, isAuthenticated } = useMoralis();
   const [ networkName, setNetworkName ] = useState("");
   const [ openDropdown, setOpenDropdown ] = useState(false);
@@ -36,10 +37,10 @@ export const ConnectButton = () => {
 
   return (
     <Styled.Wrapper>
-      <Styled.Button onClick={handleClick} state={loading ? "loading" : !user ? "logged_out" : "logged_in"}>
+      <Button onClick={handleClick} disabled={loading}>
         {loading ? "Loading" : !user ? "Connect" : (
           <>
-            <Jazzicon diameter={26} seed={jsNumberForAddress(user.attributes.accounts[0])} />
+            <Jazzicon diameter={28} seed={jsNumberForAddress(user.attributes.accounts[0])} />
             <Styled.ConnectedDetails>
               <p>{networkName}</p>
               <p>
@@ -48,7 +49,7 @@ export const ConnectButton = () => {
             </Styled.ConnectedDetails>
           </>
         )}
-      </Styled.Button>
+      </Button>
       {openDropdown && (
         <Styled.Dropdown>
           <Styled.DropdownButton onClick={() => handleLogout()}>
