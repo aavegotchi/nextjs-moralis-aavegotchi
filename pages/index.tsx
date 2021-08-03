@@ -36,7 +36,7 @@ const Home = () => {
   return (
     <Layout>
       <Panel>
-        <h1>Moralis Next.js</h1>
+        <h1>Aavegotchi Moralis Next.js</h1>
         <p>Get started by editing <b>pages/index.tsx</b>.</p>
         <Grid>
           <Card href="https://nextjs.org/docs/basic-features/pages" target="_blank">
@@ -46,6 +46,10 @@ const Home = () => {
           <Card href="https://docs.moralis.io/" target="_blank">
             <h3>Moralis Documentation</h3>
             <p>Learn about Moralis' suite of features for easy web3 integration.</p>
+          </Card>
+          <Card href="https://docs.aavegotchi.com/diamond-facets/aavegotchifacet.sol" target="_blank">
+            <h3>Aavegotchi Diamond</h3>
+            <p>Search the Aavegotchi dev wiki for the various contract methods.</p>
           </Card>
           <Card href="https://styled-components.com/" target="_blank">
             <h3>Styled components</h3>

@@ -10,16 +10,16 @@ const breakpoints = {
 
 export const theme = {
   colors: {
-    primary: '#246A73',
-    primaryAccent: '#368F8B',
-    secondary: '#F3DFC1',
-    secondaryAccent: '#DDBEA8',
-    dark0: '#160F29',
-    dark1: '#281C4A',
-    dark2: '#37295f',
-    light0: '#F3F0F9',
-    light1: '#DCD3EE',
-    light2: '#C5B6E2'
+    primary: '#FA34F3',
+    primaryAccent: '#F2B202',
+    secondary: '#6D18f8',
+    secondaryAccent: '#250750',
+    dark0: '#12032E',
+    dark1: '#200449',
+    dark2: '#250750',
+    light0: '#FFFFFF',
+    light1: '#F2F2F2',
+    light2: '#A9A9BC'
   },
 
   shadow: '0 1px 2px 0 rgba(0,0,0,0.12), 0 1px 4px 0 rgba(0,0,0,0.08)',
@@ -34,7 +34,7 @@ export const theme = {
 
   font: {
     primary: "helvetica, sans-serif",
-    secondary: "garamond, serif",
+    secondary: "helvetica, sane-serif",
     xl: {
       size: '6rem',
       lineHeight: '4rem',
