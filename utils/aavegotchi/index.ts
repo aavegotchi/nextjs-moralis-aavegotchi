@@ -177,12 +177,11 @@ export function replaceParts(svg: string, element: ReplaceElement) {
   const textnodes = doc.querySelectorAll(targetClass);
 
   textnodes.forEach(function (txt) {
-    const el = document.createElement("g");
-    el.innerHTML =
+    txt.innerHTML =
       element.target === "eyes"
         ? eyes[element.replaceSvg]
         : mouths[element.replaceSvg];
-    txt.parentNode?.replaceChild(el, txt);
+    //txt.parentNode?.replaceChild(el, txt);
   });
   const div = document.createElement("svg");
   div.appendChild(doc);

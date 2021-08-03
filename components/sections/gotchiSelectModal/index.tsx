@@ -2,7 +2,6 @@ import { useState } from "react";
 import { GotchiSVG, Modal } from "components/ui";
 import { useAavegotchi } from "context/AavegotchiContext";
 import * as Styled from "./styles";
-import { Aavegotchi } from "types";
 
 interface Props {
   onHandleClose: () => void;
@@ -36,10 +35,10 @@ export const GotchiSelectModal = ({ onHandleClose }: Props) => {
           >
             <GotchiSVG
               tokenId={gotchi.id}
-              options={{ animate: hoverIndex === i, armsUp: hoverIndex === i }}
+              options={{ animate: hoverIndex === i, armsUp: hoverIndex === i, eyes: hoverIndex === i ? "happy" : undefined }}
             />
             <Styled.GotchiNamePlate>
-              <h4>{gotchi.name}</h4>
+              <p>{gotchi.name}</p>
             </Styled.GotchiNamePlate>
           </Styled.GotchiCard>
         ))}

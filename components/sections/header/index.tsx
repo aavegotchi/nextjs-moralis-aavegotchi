@@ -41,7 +41,7 @@ const GotchiSelectButton = ({ gotchi, onClick }: { gotchi: Aavegotchi, onClick: 
           <GotchiSVG tokenId={gotchi.id} />
         </Styled.GotchiIconWrapper>
         <Styled.AavegotchiDetails>
-          <p>{gotchi.id}</p>
+          <p>({gotchi.id})</p>
           <p>{gotchi.name}</p>
         </Styled.AavegotchiDetails>
       </Styled.ButtonContents>

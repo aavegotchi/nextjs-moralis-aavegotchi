@@ -6,7 +6,7 @@ const ButtonWrapper = styled.div`
 
   &:after {
     content: '';
-    background-color: ${({ theme }) => theme.colors.dark2};
+    background-color: ${({ theme }) => theme.colors.dark0};
     position: absolute;
     top: -3px;
     bottom: -3px;
@@ -16,7 +16,7 @@ const ButtonWrapper = styled.div`
 
   &:before {
     content: '';
-    background-color: ${({ theme }) => theme.colors.dark2};
+    background-color: ${({ theme }) => theme.colors.dark0};
     position: absolute;
     left: -3px;
     right: -3px;

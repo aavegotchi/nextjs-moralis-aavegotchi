@@ -3,7 +3,7 @@ import { styled } from 'theme';
 export const Wrapper = styled.header`
   position: relative;
   width: 100%;
-  background-color: ${({theme}) => theme.colors.dark0};
+  background-color: ${({theme}) => theme.colors.secondaryAccent};
   z-index: 1;
   display: flex;
   flex-direction: row;
@@ -21,7 +21,7 @@ export const Wrapper = styled.header`
 export const ButtonContainer = styled.div`
   display: flex;
   & > * + * {
-    margin-left: 0.6rem;
+    margin-left: 1.2rem;
   }
 `
 
