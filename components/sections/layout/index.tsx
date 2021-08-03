@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Footer, Header } from 'components/sections'
 import { Container } from 'components/layout'
-import { updateNetworkId, useAavegotchi } from 'context/AavegotchiContext'
+import { updateNetworkId, useAavegotchi, updateAavegotchis } from 'context/AavegotchiContext'
 import { useMoralis } from 'react-moralis'
 import { ErrorModal } from 'components/ui'
 import Head from 'next/head'
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Layout = ({children, metadetails}: Props) => {
-  const { web3, isWeb3Enabled, web3EnableError, enableWeb3 } = useMoralis();
+  const { web3, isWeb3Enabled, web3EnableError, enableWeb3, isAuthenticated, user } = useMoralis();
   const { state: {error} , dispatch } = useAavegotchi();
 
   const handleCloseErrorModal = () => {
@@ -24,6 +24,14 @@ export const Layout = ({children, metadetails}: Props) => {
     })
   }
 
+  // Update user aavegotchis
+  useEffect(() => {
+    if (isAuthenticated && isWeb3Enabled) {
+      updateAavegotchis(dispatch, user.attributes.accounts[0]);
+    }
+  }, [isWeb3Enabled, isAuthenticated]);
+
+  // Update network
   useEffect(() => {
     if (isWeb3Enabled) {
       updateNetworkId(dispatch, web3);

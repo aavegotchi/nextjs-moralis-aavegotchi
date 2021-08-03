@@ -50,19 +50,12 @@ const GotchiSelectButton = ({ gotchi, onClick }: { gotchi: Aavegotchi, onClick: 
 };
 
 export const Header = () => {
-  const { isAuthenticated, user, isWeb3Enabled } = useMoralis();
+  const { isAuthenticated } = useMoralis();
   const {
     state: { usersAavegotchis, networkId, selectedAavegotchiIndex },
-    dispatch,
   } = useAavegotchi();
 
   const [isGotchiSelectModalOpen, setIsGotchiSelectModalOpen] = useState(false);
-
-  useEffect(() => {
-    if (isAuthenticated && isWeb3Enabled) {
-      updateAavegotchis(dispatch, user.attributes.accounts[0]);
-    }
-  }, [isWeb3Enabled, isAuthenticated]);
 
   return (
     <Styled.Wrapper>

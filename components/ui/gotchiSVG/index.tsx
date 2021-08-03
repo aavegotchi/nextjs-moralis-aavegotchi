@@ -40,7 +40,7 @@ export const GotchiSVG = ({ tokenId, options }: Props) => {
       const selectedGotchi = gotchis.find(gotchi => gotchi.id === tokenId);
 
       if (selectedGotchi?.svg) {
-        setSvg(options ? customiseSvg(selectedGotchi.svg, options) : selectedGotchi.svg);
+        setSvg(options ? customiseSvg(selectedGotchi.svg, options, selectedGotchi.equippedWearables) : selectedGotchi.svg);
       } else if (isWeb3Enabled) {
         fetchGotchiSvg(tokenId, !!selectedGotchi);
       }

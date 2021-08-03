@@ -1,4 +1,5 @@
 import { mouths, eyes } from "./svg";
+import { Tuple } from "types";
 /**
  * Converts SVG to Blob URL
  * @param {string} svg - SVG you want to turn into Blob URL
@@ -90,7 +91,7 @@ export const bounceAnimation = (svg: string) => {
       animation-timing-function: steps(2);
     }
     .wearable-hand {
-      animation-name:down !important;
+      animation-name:downHands !important;
       animation-duration:1s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
@@ -105,9 +106,23 @@ export const bounceAnimation = (svg: string) => {
 /**
  * Adds SVG styling to Aavegotchi to raise its arms
  * @param {string} svg - SVG you want to customise
+ * @param {{left?: number, right?: number}} arms - Wearable id of arms for unique animations 
  * @returns {string} Returns customised SVG
  */
-export const raiseHands = (svg: string) => {
+export const raiseHands = (svg: string, arms?: {left?: number, right?: number}) => {
+  const leftArm = arms?.left === 201 ? `
+      .wearable-hand-left {
+        transform: translateY(calc(14px + var(--hand_translateY, -4px))) scaleY(-1);
+        transform-origin: 50% 50%;
+      }
+    ` : ''
+    const rightArm = arms?.right === 201 ? `
+      .wearable-hand-right {
+        transform: translateY(calc(14px + var(--hand_translateY, -4px))) scaleY(-1);
+        transform-origin: 50% 50%;
+      }
+    ` : ``
+
   const style = `
     .gotchi-handsDownClosed {
       display:none !important;
@@ -125,8 +140,10 @@ export const raiseHands = (svg: string) => {
       display:block !important;
     }
     .wearable-hand {
-      transform: translateY(14px + var(--hand_translateY, -4px));
+      transform: translateY(var(--hand_translateY, -4px));
     }
+    ${leftArm}
+    ${rightArm}
   `;
 
   const styledSvg = svg.replace("<style>", `<style>${style}`);
@@ -202,9 +219,10 @@ export type CustomiseOptions = {
  * Customise Aavegotchi SVG
  * @param {string} svg - SVG you want to customise
  * @param {CustomiseOptions} options - Properties you want to change
+ * @param {Tuple<number, 16>} equipped - Equipped wearables (Only necessary for raised mechanical arms)
  * @returns {string} Returns customised SVG
  */
-export const customiseSvg = (svg: string, options: CustomiseOptions) => {
+export const customiseSvg = (svg: string, options: CustomiseOptions, equipped?: Tuple<number, 16>) => {
   let styledSvg = svg;
   (Object.keys(options) as Array<keyof typeof options>).map((option) => {
     const value = options[option];
@@ -216,10 +234,10 @@ export const customiseSvg = (svg: string, options: CustomiseOptions) => {
           return styledSvg = replaceParts(styledSvg, {target: option, replaceSvg: value as keyof typeof eyes});
         case 'mouth':
           return styledSvg = replaceParts(styledSvg, {target: option, replaceSvg: value as keyof typeof mouths});
-        case 'armsUp':
-          return styledSvg = raiseHands(styledSvg);
         case 'animate':
           return styledSvg = bounceAnimation(styledSvg);
+        case 'armsUp':
+          return styledSvg = raiseHands(styledSvg, equipped ? {left: equipped[4], right: equipped[5]} : undefined);
         case 'removeShadow':
           return styledSvg = removeShadow(styledSvg);
         default:
