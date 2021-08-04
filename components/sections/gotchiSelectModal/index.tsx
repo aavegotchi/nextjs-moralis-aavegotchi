@@ -28,6 +28,7 @@ export const GotchiSelectModal = ({ onHandleClose }: Props) => {
       <Styled.GotchiGrid>
         {usersAavegotchis?.map((gotchi, i) => (
           <Styled.GotchiCard
+            key={gotchi.id}
             active={i === selectedAavegotchiIndex}
             onClick={() => handleSelect(i)}
             onMouseEnter={() => setHoverIndex(i)}
