@@ -1,6 +1,13 @@
-This is a starter template for [Next.js](https://nextjs.org/learn) and [Moralis](https://docs.moralis.io/).
+## NextJS Moralis Aavegotchi
+
+This is a starter template for Aavegotchi built with [Next.js](https://nextjs.org/learn) and [Moralis](https://docs.moralis.io/) buult to streamline the development of you Aavegotchi DApp.
 
 It is written primarily in Typescript and uses [styled components](https://styled-components.com/) for styling.
+
+## Dev dependencies needed
+
+* [ts-node](https://github.com/TypeStrong/ts-node)
+* [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/)
 
 ## Getting started
 
