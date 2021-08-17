@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Layout = ({children, metadetails}: Props) => {
-  const { web3, isWeb3Enabled, web3EnableError, enableWeb3, isAuthenticated, user, Moralis, logout } = useMoralis();
+  const { web3, isWeb3Enabled, web3EnableError, enableWeb3, isAuthenticated, user, Moralis, logout  } = useMoralis();
   const { state: {error} , dispatch } = useAavegotchi();
 
   const handleCloseErrorModal = () => {
@@ -22,7 +22,7 @@ export const Layout = ({children, metadetails}: Props) => {
       type: "SET_ERROR",
       error: undefined,
     })
-  }
+  };
 
   // Update user aavegotchis
   useEffect(() => {

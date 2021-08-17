@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext } from "react";
 import { State, initialState } from "./initialState";
-import { useSubgraph } from 'actions';
-import { AavegotchisOfOwner, getAllAavegotchisOfOwner } from 'actions/queries';
+import { useSubgraph } from 'actions/subgraph';
+import { AavegotchisOfOwner, getAllAavegotchisOfOwner } from 'actions/subgraph/queries';
 import { Action, reducer } from "./reducer";
 
 const AavegotchiContext = createContext<{

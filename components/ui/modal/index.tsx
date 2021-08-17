@@ -1,5 +1,4 @@
 import * as Styled from './styles';
-import { useEffect, useState } from "react";
 import { Portal } from "components/util";
 
 interface Props {

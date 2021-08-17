@@ -1,6 +1,6 @@
 import { useAavegotchi } from "context/AavegotchiContext";
 import { useEffect, useState } from "react";
-import { useDiamondCall } from "actions";
+import { useDiamondCall } from "actions/web3";
 import { useMoralis } from "react-moralis";
 import { convertInlineSVGToBlobURL, customiseSvg, CustomiseOptions} from 'utils/aavegotchi';
 
